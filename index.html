@@ -42,37 +42,43 @@
   </header>
 
   <!-- Main Content -->
-<div class="container">
+  <div id="kontener" class="container">
 
-<div class="row">
-  <div class="col-lg-8 col-md-10 mx-auto">
-    <div class="post-preview">
-      <a href="https://windowsserver.2tihub.xyz/zapora-sieciowa/">
-        <h2 class="post-title"><i class="fab fa-windows fa-xs"></i> Windows Server 2016</h2>
-        <h3 class="post-subtitle"> Zapora Sieciowa</h3>
-      </a>
-      <p class="post-meta">16 Marzec, 2021</p>
-    </div>
+    <script>
+      $(document).ready(function () {
+                
+          // FETCHING DATA FROM JSON FILE
+          $.getJSON("https://2tihub.xyz/json/windowsserver.json", 
+          function (data) {
+            var fetchJSON = '';
+                
+            // ITERATING THROUGH OBJECTS
+            $.each(data, function (key, value) {
+                
+              // CONSTRUCTION OF ROWS HAVING
+              // DATA FROM JSON OBJECT
+              fetchJSON += '<div class="row">';
+              fetchJSON += '<div class="col-lg-8 col-md-10 mx-auto">';
+              fetchJSON += '<div class="post-preview">';
+              fetchJSON += '<a href="https://2tihub.xyz/' + value.referral + '">';
+                
+              fetchJSON += '<h2 class="post-title"><i class="' + value.icon + '"></i> ' + value.subject + '</h2>';
+              fetchJSON += '<h3 class="post-subtitle">' + value.description + '</h3>';
+                
+              fetchJSON += '</a>';
+              fetchJSON += '<p class="post-meta">' + value.date + '</p>';
+              fetchJSON += '</div>';
+              fetchJSON += '</div>';
+              fetchJSON += '</div>';
+              fetchJSON += '<hr>';
+            });
+                                          
+            // INSERTING ROWS INTO CONTAINER 
+            $('#kontener').append(fetchJSON);
+          });
+      });
+    </script>
   </div>
-</div>
-
-<hr>
-
-<div class="row">
-  <div class="col-lg-8 col-md-10 mx-auto">
-    <div class="post-preview">
-      <a href="https://windowsserver.2tihub.xyz/poradnik/">
-        <h2 class="post-title"><i class="fab fa-windows fa-xs"></i> Windows Server 2016</h2>
-        <h3 class="post-subtitle"> Poradnik - Usługi Windows Server 2016</h3>
-      </a>
-      <p class="post-meta">24/25 Listopad, 2020</p>
-    </div>
-  </div>
-</div>
-
-</div>
-
-<hr>
 
   <!-- Bootstrap core JavaScript -->
   <script src="https://2tihub.xyz/vendor/jquery/jquery.min.js"></script>
